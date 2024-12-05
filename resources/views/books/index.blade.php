@@ -1,15 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layout')
+
+@section('page-content')
+
+      <div class="row mt-4">
+        <div class="col-lg-10">
+            search functionality
+        </div>
+
+        <div class="col-lg-2">
+            <p class="text-end">
+                <a href="{{route('books.create')}}" class="btn btn-primary">New Book</a>
+            </p>
+        </div>
+      </div>
+
+
+
     <h1>Book List</h1>
 
-    <table border>
+    <table class="table table-striped">
         <tr>
             <th>ID</th>
             <th>Title</th>
@@ -23,12 +32,13 @@
                 <td>{{$book->title}}</td>
                 <td>{{$book->author}}</td>
                 <td>{{$book->price}}</td>
-                <td><a href="">View</a></td>
+                <td><a href="{{url('books/'.$book->id.'/show')}}">View</a></td>
             </tr>
 
             @endforeach
 
         </tr>
     </table>
-</body>
-</html>
+
+    {{$books->links()}}
+@endsection
